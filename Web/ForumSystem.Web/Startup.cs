@@ -62,7 +62,7 @@
             services.AddScoped<IDbQueryRunner, DbQueryRunner>();
 
             // Application services
-            services.AddTransient<IEmailSender, NullMessageSender>();
+            services.AddTransient<IEmailSender>(x => new SendGridEmailSender("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"));
             services.AddTransient<ISettingsService, SettingsService>();
         }
 
@@ -72,13 +72,12 @@
             AutoMapperConfig.RegisterMappings(typeof(ErrorViewModel).GetTypeInfo().Assembly);
 
             // Seed data on application startup
-            //using (var serviceScope = app.ApplicationServices.CreateScope())
-            //{
+            // using (var serviceScope = app.ApplicationServices.CreateScope())
+            // {
             //    var dbContext = serviceScope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
             //    dbContext.Database.Migrate();
             //    new ApplicationDbContextSeeder().SeedAsync(dbContext, serviceScope.ServiceProvider).GetAwaiter().GetResult();
-            //}
-
+            // }
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
