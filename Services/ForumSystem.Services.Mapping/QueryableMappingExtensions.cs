@@ -1,4 +1,4 @@
-﻿namespace AspNetCoreTemplate.Services.Mapping
+﻿namespace ForumSystem.Services.Mapping
 {
     using System;
     using System.Linq;

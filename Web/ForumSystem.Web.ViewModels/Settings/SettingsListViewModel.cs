@@ -1,4 +1,4 @@
-﻿namespace AspNetCoreTemplate.Web.ViewModels.Settings
+﻿namespace ForumSystem.Web.ViewModels.Settings
 {
     using System.Collections.Generic;
 

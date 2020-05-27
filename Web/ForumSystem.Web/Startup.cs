@@ -1,21 +1,22 @@
-﻿namespace AspNetCoreTemplate.Web
+﻿namespace ForumSystem.Web
 {
     using System.Reflection;
 
-    using AspNetCoreTemplate.Data;
-    using AspNetCoreTemplate.Data.Common;
-    using AspNetCoreTemplate.Data.Common.Repositories;
-    using AspNetCoreTemplate.Data.Models;
-    using AspNetCoreTemplate.Data.Repositories;
-    using AspNetCoreTemplate.Data.Seeding;
-    using AspNetCoreTemplate.Services.Data;
-    using AspNetCoreTemplate.Services.Mapping;
-    using AspNetCoreTemplate.Services.Messaging;
-    using AspNetCoreTemplate.Web.ViewModels;
+    using ForumSystem.Data;
+    using ForumSystem.Data.Common;
+    using ForumSystem.Data.Common.Repositories;
+    using ForumSystem.Data.Models;
+    using ForumSystem.Data.Repositories;
+    using ForumSystem.Data.Seeding;
+    using ForumSystem.Services.Data;
+    using ForumSystem.Services.Mapping;
+    using ForumSystem.Services.Messaging;
+    using ForumSystem.Web.ViewModels;
 
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Http;
+    using Microsoft.AspNetCore.Mvc;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
@@ -46,7 +47,11 @@
                         options.MinimumSameSitePolicy = SameSiteMode.None;
                     });
 
-            services.AddControllersWithViews();
+            services.AddControllersWithViews(
+                options =>
+                    {
+                        options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute());
+                    });
             services.AddRazorPages();
 
             services.AddSingleton(this.configuration);
@@ -70,12 +75,7 @@
             using (var serviceScope = app.ApplicationServices.CreateScope())
             {
                 var dbContext = serviceScope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
-
-                if (env.IsDevelopment())
-                {
-                    dbContext.Database.Migrate();
-                }
-
+                dbContext.Database.Migrate();
                 new ApplicationDbContextSeeder().SeedAsync(dbContext, serviceScope.ServiceProvider).GetAwaiter().GetResult();
             }
 

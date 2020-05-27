@@ -1,12 +1,12 @@
-﻿namespace AspNetCoreTemplate.Web.Controllers
+﻿namespace ForumSystem.Web.Controllers
 {
     using System;
     using System.Threading.Tasks;
 
-    using AspNetCoreTemplate.Data.Common.Repositories;
-    using AspNetCoreTemplate.Data.Models;
-    using AspNetCoreTemplate.Services.Data;
-    using AspNetCoreTemplate.Web.ViewModels.Settings;
+    using ForumSystem.Data.Common.Repositories;
+    using ForumSystem.Data.Models;
+    using ForumSystem.Services.Data;
+    using ForumSystem.Web.ViewModels.Settings;
 
     using Microsoft.AspNetCore.Mvc;
 

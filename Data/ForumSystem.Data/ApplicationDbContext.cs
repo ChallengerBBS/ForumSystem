@@ -1,4 +1,4 @@
-﻿namespace AspNetCoreTemplate.Data
+﻿namespace ForumSystem.Data
 {
     using System;
     using System.Linq;
@@ -6,8 +6,8 @@
     using System.Threading;
     using System.Threading.Tasks;
 
-    using AspNetCoreTemplate.Data.Common.Models;
-    using AspNetCoreTemplate.Data.Models;
+    using ForumSystem.Data.Common.Models;
+    using ForumSystem.Data.Models;
 
     using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore;

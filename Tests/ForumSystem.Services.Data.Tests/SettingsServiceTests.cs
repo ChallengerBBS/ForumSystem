@@ -1,13 +1,13 @@
-﻿namespace AspNetCoreTemplate.Services.Data.Tests
+﻿namespace ForumSystem.Services.Data.Tests
 {
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
 
-    using AspNetCoreTemplate.Data;
-    using AspNetCoreTemplate.Data.Common.Repositories;
-    using AspNetCoreTemplate.Data.Models;
-    using AspNetCoreTemplate.Data.Repositories;
+    using ForumSystem.Data;
+    using ForumSystem.Data.Common.Repositories;
+    using ForumSystem.Data.Models;
+    using ForumSystem.Data.Repositories;
 
     using Microsoft.EntityFrameworkCore;
 

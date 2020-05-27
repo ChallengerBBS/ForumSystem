@@ -1,11 +1,11 @@
-﻿namespace AspNetCoreTemplate.Services.Data
+﻿namespace ForumSystem.Services.Data
 {
     using System.Collections.Generic;
     using System.Linq;
 
-    using AspNetCoreTemplate.Data.Common.Repositories;
-    using AspNetCoreTemplate.Data.Models;
-    using AspNetCoreTemplate.Services.Mapping;
+    using ForumSystem.Data.Common.Repositories;
+    using ForumSystem.Data.Models;
+    using ForumSystem.Services.Mapping;
 
     public class SettingsService : ISettingsService
     {

@@ -1,4 +1,4 @@
-﻿namespace AspNetCoreTemplate.Data
+﻿namespace ForumSystem.Data
 {
     using System.IO;
 

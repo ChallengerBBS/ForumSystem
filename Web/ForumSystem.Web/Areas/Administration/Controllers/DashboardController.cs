@@ -1,7 +1,7 @@
-﻿namespace AspNetCoreTemplate.Web.Areas.Administration.Controllers
+﻿namespace ForumSystem.Web.Areas.Administration.Controllers
 {
-    using AspNetCoreTemplate.Services.Data;
-    using AspNetCoreTemplate.Web.ViewModels.Administration.Dashboard;
+    using ForumSystem.Services.Data;
+    using ForumSystem.Web.ViewModels.Administration.Dashboard;
 
     using Microsoft.AspNetCore.Mvc;
 

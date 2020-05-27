@@ -1,4 +1,4 @@
-﻿namespace AspNetCoreTemplate.Services.Messaging
+﻿namespace ForumSystem.Services.Messaging
 {
     public class EmailAttachment
     {

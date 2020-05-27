@@ -1,4 +1,4 @@
-﻿namespace AspNetCoreTemplate.Data.Migrations
+﻿namespace ForumSystem.Data.Migrations
 {
     using System;
 

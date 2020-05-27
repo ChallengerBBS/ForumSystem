@@ -1,4 +1,4 @@
-﻿namespace AspNetCoreTemplate.Services.Data
+﻿namespace ForumSystem.Services.Data
 {
     using System.Collections.Generic;
 

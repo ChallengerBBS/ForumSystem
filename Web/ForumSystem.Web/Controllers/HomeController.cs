@@ -1,8 +1,8 @@
-﻿namespace AspNetCoreTemplate.Web.Controllers
+﻿namespace ForumSystem.Web.Controllers
 {
     using System.Diagnostics;
 
-    using AspNetCoreTemplate.Web.ViewModels;
+    using ForumSystem.Web.ViewModels;
 
     using Microsoft.AspNetCore.Mvc;
 
