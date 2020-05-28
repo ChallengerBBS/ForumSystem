@@ -1,8 +1,9 @@
 ﻿namespace ForumSystem.Web.ViewModels.Categories
 {
+    using System.Collections.Generic;
+
     using ForumSystem.Data.Models;
     using ForumSystem.Services.Mapping;
-    using System.Collections.Generic;
 
     public class CategoryViewModel : IMapFrom<Category>
     {
