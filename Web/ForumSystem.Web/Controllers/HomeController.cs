@@ -1,12 +1,8 @@
 ﻿namespace ForumSystem.Web.Controllers
 {
     using System.Diagnostics;
-    using System.Linq;
 
-    using ForumSystem.Data.Common.Repositories;
-    using ForumSystem.Data.Models;
     using ForumSystem.Services.Data;
-    using ForumSystem.Services.Mapping;
     using ForumSystem.Web.ViewModels;
     using ForumSystem.Web.ViewModels.Home;
     using Microsoft.AspNetCore.Mvc;
@@ -24,11 +20,8 @@
         {
             var viewModel = new IndexViewModel
             {
-
                 Categories = this.categoriesService.GetAll<IndexCategoryViewModel>(),
             };
-
-
             return this.View(viewModel);
         }
 
