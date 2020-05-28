@@ -7,7 +7,6 @@
     using ForumSystem.Data.Common.Repositories;
     using ForumSystem.Data.Models;
     using ForumSystem.Data.Repositories;
-    using ForumSystem.Data.Seeding;
     using ForumSystem.Services.Data;
     using ForumSystem.Services.Mapping;
     using ForumSystem.Services.Messaging;
@@ -64,6 +63,7 @@
             // Application services
             services.AddTransient<IEmailSender>(x => new SendGridEmailSender("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"));
             services.AddTransient<ISettingsService, SettingsService>();
+            services.AddTransient<ICategoriesService, CategoriesService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
