@@ -1,7 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace ForumSystem.Web.ViewModels.Posts
+﻿namespace ForumSystem.Web.ViewModels.Posts
 {
+    using System.ComponentModel.DataAnnotations;
+
     public class PostCreateInputModel
     {
         [Required]
@@ -10,9 +10,7 @@ namespace ForumSystem.Web.ViewModels.Posts
         [Required]
         public string Content { get; set; }
 
-        [Range(1,int.MaxValue)]
+        [Range(1, int.MaxValue)]
         public int CategoryId { get; set; }
-
-
     }
 }
