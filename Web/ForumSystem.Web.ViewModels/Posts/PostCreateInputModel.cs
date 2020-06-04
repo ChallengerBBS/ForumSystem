@@ -16,6 +16,5 @@
         public int CategoryId { get; set; }
 
         public IEnumerable<CategoryDropDownViewModel> Categories { get; set; }
-
     }
 }
