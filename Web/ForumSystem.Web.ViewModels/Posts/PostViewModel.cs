@@ -9,6 +9,7 @@
 
     public class PostViewModel : IMapFrom<Post>, IMapTo<Post>, IHaveCustomMappings
     {
+        public int Id { get; set; }
         public DateTime CreatedOn { get; set; }
 
         public string Title { get; set; }
