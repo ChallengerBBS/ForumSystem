@@ -28,10 +28,11 @@
         public IActionResult ById(int id)
         {
             var postViewModel = this.postsService.GetById<PostViewModel>(id);
-            if (postViewModel==null)
+            if (postViewModel == null)
             {
                 return this.NotFound();
             }
+
             return this.View(postViewModel);
         }
 

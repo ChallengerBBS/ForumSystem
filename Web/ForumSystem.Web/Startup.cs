@@ -7,9 +7,9 @@
     using ForumSystem.Data.Common.Repositories;
     using ForumSystem.Data.Models;
     using ForumSystem.Data.Repositories;
+    using ForumSystem.Data.Seeding;
     using ForumSystem.Services.Data;
     using ForumSystem.Services.Mapping;
-    using ForumSystem.Services.Messaging;
     using ForumSystem.Web.ViewModels;
 
     using Microsoft.AspNetCore.Builder;
@@ -64,6 +64,8 @@
             services.AddTransient<ISettingsService, SettingsService>();
             services.AddTransient<ICategoriesService, CategoriesService>();
             services.AddTransient<IPostsService, PostsService>();
+            services.AddTransient<IVotesService, VotesService>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -72,14 +74,19 @@
             AutoMapperConfig.RegisterMappings(typeof(ErrorViewModel).GetTypeInfo().Assembly);
 
             // Seed data on application startup
-            // using (var serviceScope = app.ApplicationServices.CreateScope())
-            // {
-            //    var dbContext = serviceScope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
-            //    dbContext.Database.Migrate();
-            //    new ApplicationDbContextSeeder().SeedAsync(dbContext, serviceScope.ServiceProvider)
-            //                                    .GetAwaiter()
-            //                                    .GetResult();
-            // }
+            using (var serviceScope = app.ApplicationServices.CreateScope())
+            {
+                var dbContext = serviceScope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+                if (env.IsDevelopment())
+                {
+                    dbContext.Database.Migrate();
+                }
+
+                new ApplicationDbContextSeeder().SeedAsync(dbContext, serviceScope.ServiceProvider)
+                                                   .GetAwaiter()
+                                                   .GetResult();
+            }
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
