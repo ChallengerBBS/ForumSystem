@@ -19,10 +19,11 @@
                             <div class="text-muted small">@Model.CreatedOn</div>
                         </div>
                         <div class="text-muted small ml-3">
+                        <form id="votesForm" method="post"></form>
                             <a href="#" onclick="sendVote(@Model.Id, true)">
                                 <div><i class="fa fa-thumbs-up" style="color: cornflowerblue; font-size: large " aria-hidden="true"></i></div>
                             </a>
-                            <div>@Model.VotesCount</div>
+                            <div id="votesCount">@Model.VotesCount</div>
                             <a href="#" onclick="sendVote(@Model.Id, false)">
                                 <div><i class="fa fa-thumbs-down" style="color: red; font-size: large" aria-hidden="true"></i></div>
                             </a>
@@ -53,15 +54,17 @@
 {
     <script>
         function sendVote(postId, isUpVote) {
+            var token = $("#votesForm input[name=__RequestVerificationToken]").val();
             var json = { postId: postId, isUpVote: isUpVote }
             $.ajax({
                 url: "/api/votes",
                 type: "POST",
                 data: JSON.stringify(json),
                 contentType: "application/json; charset=utf-8",
+                headers: { 'X-CSRF-TOKEN': token},
                 dataType: "json",
                 success: function (data) {
-                    console.log(data.votesCount)
+                    $("#votesCount").html(data.votesCount);
                 }
             });
         }
