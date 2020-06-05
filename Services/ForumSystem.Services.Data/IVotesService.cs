@@ -11,5 +11,7 @@
         /// <param name="IsUpVote">If true - up vote, else downvote.</param>
         /// <returns></returns>
         Task VoteAsync(int postId, string userId, bool isUpVote);
+
+        int GetVotes(int postId);
     }
 }
