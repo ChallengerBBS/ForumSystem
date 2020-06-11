@@ -6,6 +6,7 @@
 
     <div class="text-center">
         <h1 class="display-4">@this.ViewData["Title"]</h1>
+        <a asp-controller="Posts" asp-action="Create" class="btn btn-info btn-lg mb-md-5">Create a new post</a>
         <div class="row">
             @foreach (var category in Model.Categories)
             {
