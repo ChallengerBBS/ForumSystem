@@ -1,12 +1,10 @@
 ﻿namespace ForumSystem.Web.Controllers
 {
+    using System;
+
     using ForumSystem.Services.Data;
     using ForumSystem.Web.ViewModels.Categories;
     using Microsoft.AspNetCore.Mvc;
-    using Microsoft.Extensions.Logging;
-    using System;
-    using System.Linq;
-    using System.Threading;
 
     public class CategoriesController : Controller
     {
@@ -33,6 +31,11 @@
                                         ((int)page - 1) * ItemsPerPage);
             var postsCount = this.postsService.GetCountByCategoryId(viewModel.Id);
             viewModel.PagesCount = (int)Math.Ceiling((double)postsCount / ItemsPerPage);
+            if (viewModel.PagesCount == 0)
+            {
+                viewModel.PagesCount = 1;
+            }
+
             viewModel.CurrentPage = page;
             return this.View(viewModel);
         }
