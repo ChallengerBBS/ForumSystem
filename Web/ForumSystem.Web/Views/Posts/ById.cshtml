@@ -19,7 +19,7 @@
                             <div class="text-muted small">@Model.CreatedOn</div>
                         </div>
                         <div class="text-muted small ml-3">
-                        <form id="votesForm" method="post"></form>
+                            <form id="votesForm" method="post"></form>
                             <a href="#" onclick="sendVote(@Model.Id, true)">
                                 <div><i class="fa fa-thumbs-up" style="color: cornflowerblue; font-size: large " aria-hidden="true"></i></div>
                             </a>
@@ -43,16 +43,39 @@
                             <span class="align-middle">0</span>
                         </span>
                     </div>
-                    <div class="px-4 pt-3"> <button type="button" class="btn btn-primary"><i class="fa fa-plug"></i>&nbsp; Reply</button> </div>
+                    <div class="px-4 pt-3"> <button type="button" class="btn btn-primary" onclick="showAddCommentForm()"><i class="fa fa-plug"></i>&nbsp; Comment</button> </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+<script src="/lib/tinymce/tinymce.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+    tinymce.init({
+        selector: "textarea",
+        plugins: ["image paste table link code media"]
+    });
+</script>
+<div id="AddCommentForm" style="display:none">
+    <form asp-controller="Comments" asp-action="Create" method="post">
+            <input type="hidden" name="PostId" value="@this.Model.Id" />
+        <div>
+            <label for="Content"></label>
+            <textarea name="Content" id="Content" class="form-control"></textarea>
+        </div>
+        <div>
+            <input type="submit" class ="btn btn-primary" value="Add comment" />
+        </div>
+    </form>
+</div>
 
 @section Scripts
 {
     <script>
+        function showAddCommentForm() {
+            $("#AddCommentForm").show();
+        }
+
         function sendVote(postId, isUpVote) {
             var token = $("#votesForm input[name=__RequestVerificationToken]").val();
             var json = { postId: postId, isUpVote: isUpVote }
@@ -61,7 +84,7 @@
                 type: "POST",
                 data: JSON.stringify(json),
                 contentType: "application/json; charset=utf-8",
-                headers: { 'X-CSRF-TOKEN': token},
+                headers: { 'X-CSRF-TOKEN': token },
                 dataType: "json",
                 success: function (data) {
                     $("#votesCount").html(data.votesCount);
@@ -69,4 +92,5 @@
             });
         }
     </script>
+
 }
