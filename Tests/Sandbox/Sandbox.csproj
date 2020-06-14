@@ -33,8 +33,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\ForumSystem.Common\ForumSystem.Common.csproj" />
     <ProjectReference Include="..\..\Data\ForumSystem.Data.Common\ForumSystem.Data.Common.csproj" />
+    <ProjectReference Include="..\..\ForumSystem.Common\ForumSystem.Common.csproj" />
     <ProjectReference Include="..\..\Data\ForumSystem.Data.Models\ForumSystem.Data.Models.csproj" />
     <ProjectReference Include="..\..\Data\ForumSystem.Data\ForumSystem.Data.csproj" />
     <ProjectReference Include="..\..\Services\ForumSystem.Services.Data\ForumSystem.Services.Data.csproj" />
