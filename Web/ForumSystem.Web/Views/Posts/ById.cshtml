@@ -58,8 +58,8 @@
     <div class="row">
         <div class="col-md-12">
             <div class="card mb-4">
-                <div class="card-header">
-                    <div class="media flex-wrap w-100 align-items-center">
+                <div class="card-header"style="background-color: indianred">
+                    <div class="media flex-wrap w-100 align-items-center" >
                         <img src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1574583246/AAA/2.jpg" class="d-block ui-w-40 rounded-circle" alt="">
                         <div class="media-body ml-3">
                             @Model.UserUserName
@@ -67,17 +67,17 @@
                                 <time datetime="@Model.CreatedOn.ToString("O")"></time>
                             </div>
                         </div>
-                        <div class="text-muted small ml-3">
+                        <div class="text-muted medium ml-3" >
                             <form id="votesForm" method="post"></form>
                             <div>
                                 <a href="#" onclick="sendVote(@Model.Id, true)">
-                                    <i class="fa fa-thumbs-up"></i>
+                                    <i class="fa fa-thumbs-up" style="color: cornsilk"></i>
                                 </a>
                             </div>
-                            <div id="votesCount">@Model.VotesCount</div>
+                            <div id="votesCount" style="color: cornsilk">@Model.VotesCount</div>
                             <div>
                                 <a href="#" onclick="sendVote(@Model.Id, false)">
-                                    <i class="fa fa-thumbs-down"></i>
+                                    <i class="fa fa-thumbs-down" style="color: cornsilk"></i>
                                 </a>
                             </div>
                         </div>
@@ -93,6 +93,7 @@
                         <div class="px-4 pt-3"> <button type="button" class="btn btn-primary float-right" onclick="showAddCommentForm(0)"><i class="fa fa-plus"></i>&nbsp; Comment</button> </div>
                         <div class="clearfix"></div>
                     }
+                    <br />
                     @{ DisplayComments(null); }
                 </div>
             </div>

@@ -3,12 +3,18 @@
     this.ViewData["Title"] = Model.Title;
 }
 
-<h1 class="display-3">@Model.Title</h1>
-<div class="alert-info">
-    @Model.Description
+<div>
+<h1>@Model.Title</h1>
+<h4>@Model.Description</h4>
 </div>
-
-@foreach (var post in Model.ForumPosts)
+<br/>
+@if (!Model.ForumPosts.Any())
+{
+    <h4>There are no posts for this category yet.</h4>
+}
+else
+{
+foreach (var post in Model.ForumPosts)
 {
     <div class="media-body">
         <h4 class="media-heading"><a asp-controller="Posts" asp-action="ById" asp-route-id="@post.Id">@post.Title</a></h4>
@@ -74,5 +80,6 @@
         }
     </ul>
 </nav>
+}
 
 
