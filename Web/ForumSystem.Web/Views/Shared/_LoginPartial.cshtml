@@ -3,8 +3,9 @@
 @using Microsoft.AspNetCore.Identity
 @inject SignInManager<ApplicationUser> SignInManager
 @inject UserManager<ApplicationUser> UserManager
+<link href="~/lib/fontawesome/css/all.css" rel="stylesheet" asp-append-version="true" />
 
-<ul class="navbar-nav" style="text-justify:distribute">
+<ul class="navbar-nav nav-justified flex-grow-0">
     @if (this.SignInManager.IsSignedIn(this.User))
     {
         <li class="nav-item">
@@ -17,8 +18,8 @@
             </li>
         }
         <li class="nav-item">
-            <form asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@(this.Url.Action("Index", "Home", new { area = string.Empty }))">
-                <button type="submit" class=" btn btn-lg" style="font-size: 20px">Logout</button>
+            <form class= "nav-link" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@(this.Url.Action("Index", "Home", new { area = string.Empty }))">
+            <button class="btn nav-link fa fa-1x fa-door-open"></button>
             </form>
         </li>
     }
@@ -32,3 +33,4 @@
         </li>
     }
 </ul>
+

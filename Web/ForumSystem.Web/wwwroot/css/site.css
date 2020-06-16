@@ -43,6 +43,7 @@ html {
 }
 
 body {
+    height:100%;
     margin-top: 15px;
     background-image: url("../jpg/gray-background.jpg");
     background-repeat: no-repeat;
@@ -53,12 +54,11 @@ body {
 }
 
 .footer {
-    position:initial;
+    position:relative;
     bottom: 0;
     width: 100%;
     white-space: nowrap;
     height: 60px;
-    line-height: 60px;
 }
 
 
@@ -85,4 +85,9 @@ section {
     left: 0;
     right: 0;
     width: 100%;
+}
+
+.navbar-nav .nav-item.active .nav-link,
+.navbar-nav .nav-item:hover .nav-link {
+    color: aliceblue !important;
 }

@@ -7,7 +7,7 @@
 <div class="text-center">
     <h1 class="display-4">@this.ViewData["Title"]</h1>
     <br />
-    <a asp-controller="Posts" asp-action="Create" class="btn btn-lg mb-md-5" style="background-color: lightgray">Create a new post</a>
+    <a asp-controller="Posts" asp-action="Create" class="btn btn-lg mb-md-5" style="background-color: #adadad">Create a new post</a>
     <div class="row">
         @if (!Model.Categories.Any())
         {
@@ -20,7 +20,7 @@
                 <div class="col-md-4 media">
                     <img src="@category.ImageUrl" width="100" class="mr-3" alt="@category.Title ">
                     <div class="media-body">
-                        <h5 class="mt-0"><a href="@category.Url">@category.Title (@category.PostsCount)</a></h5>
+                        <h5 class="mt-0"><a style="color:indianred" href="@category.Url">@category.Title.ToUpper() (@category.PostsCount posts)</a></h5>
                         @category.Description
                     </div>
                 </div>
