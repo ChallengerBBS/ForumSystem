@@ -53,13 +53,58 @@
         {
             if (!this.ModelState.IsValid)
             {
-            return this.View(input);
+                return this.View(input);
             }
 
             var user = await this.userManager.GetUserAsync(this.User);
             var postId = await this.postsService
                             .CreateAsync(input.Title, input.Content, input.CategoryId, user.Id);
             return this.RedirectToAction(nameof(this.ById), new { id = postId });
+        }
+
+        //[Authorize]
+        //public IActionResult Edit()
+        //{
+        //    var viewModel = new PostEditInputModel();
+        //    return this.View(viewModel);
+        //}
+
+        //[Authorize]
+        //[HttpPut]
+        //public async Task<IActionResult> Edit(PostEditInputModel input)
+        //{
+        //    if (!this.ModelState.IsValid)
+        //    {
+        //        return this.View(input);
+        //    }
+
+        //    return this.View();
+        //}
+
+        public IActionResult Delete(int? id)
+        {
+            if (id == null)
+            {
+                return this.NotFound();
+            }
+
+            var post = this.postsService.GetById<Post>(id.Value);
+
+            if (post == null)
+            {
+                return this.NotFound();
+            }
+
+            return this.View(post);
+        }
+
+        [HttpPost]
+        [ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            await this.postsService.DeletePostAsync(id);
+            return this.RedirectToAction("/Home/Index/");
         }
     }
 }

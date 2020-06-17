@@ -6,6 +6,7 @@
 
     using ForumSystem.Data.Common.Repositories;
     using ForumSystem.Data.Models;
+
     using ForumSystem.Services.Mapping;
 
     public class PostsService : IPostsService
@@ -31,6 +32,25 @@
             await this.postsRepository.SaveChangesAsync();
 
             return post.Id;
+        }
+
+        //public async Task<int> Update(string title, string content)
+        //{
+        //    var post = new Post
+        //    {
+
+        //    }
+        //    this.postsRepository.GetByIdWithDeletedAsync();
+        //    this.postsRepository.Update(post);
+        //    this.postsRepository.SaveChangesAsync();
+        //    return post.Id;
+        //}
+
+        public async Task DeletePostAsync(int id)
+        {
+            var post = this.GetById<Post>(id);
+            this.postsRepository.Delete(post);
+            await this.postsRepository.SaveChangesAsync();
         }
 
         public IEnumerable<T> GetByCategoryId<T>(int categoryId, int? take = null, int skip = 0)
