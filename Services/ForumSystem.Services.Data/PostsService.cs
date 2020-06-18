@@ -34,17 +34,14 @@
             return post.Id;
         }
 
-        //public async Task<int> Update(string title, string content)
-        //{
-        //    var post = new Post
-        //    {
-
-        //    }
-        //    this.postsRepository.GetByIdWithDeletedAsync();
-        //    this.postsRepository.Update(post);
-        //    this.postsRepository.SaveChangesAsync();
-        //    return post.Id;
-        //}
+        public async Task EditPostAsync(int id, string title, string content)
+        {
+            var post = this.GetById<Post>(id);
+            post.Title = title;
+            post.Content = content;
+            this.postsRepository.Update(post);
+            await this.postsRepository.SaveChangesAsync();
+        }
 
         public async Task DeletePostAsync(int id)
         {

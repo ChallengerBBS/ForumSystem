@@ -8,8 +8,9 @@
         Task<int> CreateAsync(string title, string content, int categoryId, string userId);
 
         // int Edit(PostEditInputModel model, ClaimsPrincipal principal);
-
         Task DeletePostAsync(int id);
+
+        Task EditPostAsync(int id, string title, string content);
 
         T GetById<T>(int id);
 

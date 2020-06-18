@@ -98,9 +98,9 @@
                                     <i class="fa fa-trash"></i>&nbsp; Delete
                                 </a>
 
-
-                                <button type="button" class="btn btn-primary spaced float-right"><i class="fa fa-cog"></i>&nbsp; Edit</button>
-
+                                <a asp-action="Edit" asp-route-id="@Model.Id" type="button" class="btn btn-primary spaced float-right">
+                                    <i class="fa fa-cog"></i>&nbsp; Edit
+                                </a>
                             }
                         }
                         <div class="clearfix"></div>

@@ -1,5 +1,6 @@
 ﻿namespace ForumSystem.Web.Controllers
 {
+    using System;
     using System.Threading.Tasks;
 
     using ForumSystem.Data.Models;
@@ -62,48 +63,53 @@
             return this.RedirectToAction(nameof(this.ById), new { id = postId });
         }
 
-        //[Authorize]
-        //public IActionResult Edit()
-        //{
-        //    var viewModel = new PostEditInputModel();
-        //    return this.View(viewModel);
-        //}
-
-        //[Authorize]
-        //[HttpPut]
-        //public async Task<IActionResult> Edit(PostEditInputModel input)
-        //{
-        //    if (!this.ModelState.IsValid)
-        //    {
-        //        return this.View(input);
-        //    }
-
-        //    return this.View();
-        //}
-
-        public IActionResult Delete(int? id)
+        [Authorize]
+        [HttpGet]
+        public IActionResult Edit(int? id)
         {
-            if (id == null)
-            {
-                return this.NotFound();
-            }
-
-            var post = this.postsService.GetById<Post>(id.Value);
-
-            if (post == null)
-            {
-                return this.NotFound();
-            }
-
-            return this.View(post);
+            var viewModel = this.postsService.GetById<PostEditInputModel>(id.Value);
+            return this.View(viewModel);
         }
 
+        [Authorize]
         [HttpPost]
-        [ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public async Task<IActionResult> Edit(PostEditInputModel input)
         {
-            await this.postsService.DeletePostAsync(id);
+            if (!this.ModelState.IsValid)
+            {
+                return this.View(input);
+            }
+
+            await this.postsService.EditPostAsync(input.Id, input.Title, input.Content);
+
+            return this.RedirectToAction("/"+ nameof(this.ById) + "/" + input.Id.ToString());
+        }
+
+        [Authorize]
+        [HttpGet]
+        public IActionResult Delete(int? id)
+        {
+            if (!id.HasValue)
+            {
+                return this.BadRequest();
+            }
+
+            var viewModel = this.postsService.GetById<PostDeleteViewModel>(id.Value);
+            return this.View(viewModel);
+        }
+
+        [Authorize]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Delete(PostDeleteViewModel input)
+        {
+            if (!this.ModelState.IsValid)
+            {
+                return this.View(input);
+            }
+
+            await this.postsService.DeletePostAsync(input.Id);
             return this.RedirectToAction("/Home/Index/");
         }
     }
