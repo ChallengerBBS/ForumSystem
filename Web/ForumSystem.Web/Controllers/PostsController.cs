@@ -40,6 +40,7 @@
         [Authorize]
         public IActionResult Create()
         {
+
             var categories = this.categoriesService.GetAll<CategoryDropDownViewModel>();
             var viewModel = new PostCreateInputModel
             {
@@ -64,9 +65,13 @@
         }
 
         [Authorize]
-        [HttpGet]
         public IActionResult Edit(int? id)
         {
+            if (!id.HasValue)
+            {
+                return this.BadRequest();
+            }
+
             var viewModel = this.postsService.GetById<PostEditInputModel>(id.Value);
             return this.View(viewModel);
         }
@@ -81,13 +86,13 @@
                 return this.View(input);
             }
 
-            await this.postsService.EditPostAsync(input.Id, input.Title, input.Content);
+            await this.postsService.EditPostAsync(input);
+            return this.RedirectToAction(nameof(this.ById), new { id = input.Id });
 
-            return this.RedirectToAction("/"+ nameof(this.ById) + "/" + input.Id.ToString());
+            // return this.RedirectToAction(nameof(this.ById), input.Id);
         }
 
         [Authorize]
-        [HttpGet]
         public IActionResult Delete(int? id)
         {
             if (!id.HasValue)
@@ -109,8 +114,8 @@
                 return this.View(input);
             }
 
-            await this.postsService.DeletePostAsync(input.Id);
-            return this.RedirectToAction("/Home/Index/");
+            await this.postsService.DeletePostAsync(input);
+            return this.Redirect("/");
         }
     }
 }

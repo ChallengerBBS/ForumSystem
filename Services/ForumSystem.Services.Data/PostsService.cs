@@ -8,6 +8,7 @@
     using ForumSystem.Data.Models;
 
     using ForumSystem.Services.Mapping;
+    using ForumSystem.Web.ViewModels.Posts;
 
     public class PostsService : IPostsService
     {
@@ -34,18 +35,27 @@
             return post.Id;
         }
 
-        public async Task EditPostAsync(int id, string title, string content)
+        public async Task EditPostAsync(PostEditInputModel input)
         {
-            var post = this.GetById<Post>(id);
-            post.Title = title;
-            post.Content = content;
+            var post = this.postsRepository
+                                .All()
+                                .Where(x => x.Id == input.Id)
+                                .FirstOrDefault();
+
+            post.Title = input.Title;
+            post.Content = input.Title;
+
             this.postsRepository.Update(post);
             await this.postsRepository.SaveChangesAsync();
         }
 
-        public async Task DeletePostAsync(int id)
+        public async Task DeletePostAsync(PostDeleteViewModel input)
         {
-            var post = this.GetById<Post>(id);
+            var post = this.postsRepository
+                             .All()
+                             .Where(x => x.Id == input.Id)
+                             .FirstOrDefault();
+
             this.postsRepository.Delete(post);
             await this.postsRepository.SaveChangesAsync();
         }
