@@ -43,7 +43,7 @@
                                 .FirstOrDefault();
 
             post.Title = input.Title;
-            post.Content = input.Title;
+            post.Content = input.Content;
 
             this.postsRepository.Update(post);
             await this.postsRepository.SaveChangesAsync();
