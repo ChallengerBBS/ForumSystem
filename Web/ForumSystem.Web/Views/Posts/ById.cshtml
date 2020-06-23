@@ -64,7 +64,12 @@
                         <div class="media-body ml-3">
                             @Model.UserUserName
                             <div class="text-black-100 small bold font-italic">
-                                @Model.CreatedOn.ToString("dd MMM HH:mm")
+                                Posted on @Model.CreatedOn.ToString("dd.MM.yy - HH:mm")
+                                    <br/>
+                                @if(Model.ModifiedOn.HasValue)
+                                {
+                                 <Text>Edited on </Text>@Model.ModifiedOn.Value.ToString("dd.MM.yy - HH:mm");
+                                }
                             </div>
                         </div>
                         <div class="text-muted medium ml-3">
