@@ -88,8 +88,6 @@
 
             await this.postsService.EditPostAsync(input);
             return this.RedirectToAction(nameof(this.ById), new { id = input.Id });
-
-            // return this.RedirectToAction(nameof(this.ById), input.Id);
         }
 
         [Authorize]
